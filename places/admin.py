@@ -1,3 +1,4 @@
+from adminsortable2.admin import SortableInlineAdminMixin, SortableAdminBase
 from django.contrib import admin
 from django.utils.html import format_html
 
@@ -13,8 +14,9 @@ class ImageAdmin(admin.ModelAdmin):
         return format_html('<img src="{}" height={height} />'.format(obj.image.url, height=200))
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
+    extra = 2
     readonly_fields = ["get_preview"]
 
     def get_preview(self, obj):
@@ -24,10 +26,8 @@ class ImageInline(admin.TabularInline):
 
 
 @admin.register(Places)
-class PlacesAdmin(admin.ModelAdmin):
-    inlines = [
-        ImageInline,
-    ]
+class PlacesAdmin(SortableAdminBase, admin.ModelAdmin):
+    inlines = (ImageInline,)
 
 
 #admin.site.register(Places)
