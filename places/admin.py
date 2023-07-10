@@ -28,6 +28,3 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
 class PlacesAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = (ImageInline,)
 
-
-#admin.site.register(Places)
-#admin.site.register(Image)
