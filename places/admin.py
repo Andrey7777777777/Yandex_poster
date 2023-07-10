@@ -5,7 +5,6 @@ from django.utils.html import format_html
 from .models import Places, Image
 
 
-
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     readonly_fields = ["get_preview"]
