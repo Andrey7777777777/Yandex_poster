@@ -34,7 +34,9 @@ class Image(models.Model):
         verbose_name = 'IMAGE'
         verbose_name_plural = 'IMAGES'
         ordering = ['image_number', 'place']
+        unique_together = ['id', 'place', 'image']
 
     def __str__(self):
         return f'{self.image_number} {self.place.title}'
-    
+
+
