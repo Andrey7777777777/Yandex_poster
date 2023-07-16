@@ -9,19 +9,13 @@ class Places(models.Model):
     long_description = HTMLField('полное описание', blank=True)
     latitude = models.FloatField('широта')
     longitude = models.FloatField('долгота')
-    place_id = models.CharField('ID места',
-                                max_length=200,
-                                unique=True,
-                                blank=True,
-                                null=True
-                                )
-
-    def __str__(self):
-        return self.title
 
     class Meta:
         verbose_name = 'PLACE'
         verbose_name_plural = 'PLACES'
+
+    def __str__(self):
+        return self.title
 
 
 class Image(models.Model):
@@ -36,10 +30,11 @@ class Image(models.Model):
 
     image = models.ImageField()
 
-    def __str__(self):
-        return f'{self.image_number} {self.place.title}'
-
     class Meta:
         verbose_name = 'IMAGE'
         verbose_name_plural = 'IMAGES'
         ordering = ['image_number', 'place']
+
+    def __str__(self):
+        return f'{self.image_number} {self.place.title}'
+    
