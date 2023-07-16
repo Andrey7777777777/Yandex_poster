@@ -3,25 +3,26 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import Places, Image
+from download_tools import get_image_preview
 
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    readonly_fields = ['get_preview']
+    readonly_fields = ["image_preview"]
 
-    def get_preview(self, obj):
-        return format_html('<img src="{}" height={height} />'.format(obj.image.url, height=200))
+    def image_preview(self, obj):
+        return get_image_preview(self, obj)
 
 
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     extra = 2
-    readonly_fields = ['get_preview']
+    readonly_fields = ["image_preview"]
 
-    def get_preview(self, obj):
-        return format_html('<img src="{}" height={height} />'.format(obj.image.url, height=200))
+    def image_preview(self, obj):
+        return get_image_preview(self, obj)
 
-    fields = ('image', 'get_preview', 'image_number')
+    fields = ('image', 'image_preview', 'image_number')
 
 
 @admin.register(Places)
