@@ -7,7 +7,7 @@ from .models import Places, Image
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    readonly_fields = ["get_preview"]
+    readonly_fields = ['get_preview']
 
     def get_preview(self, obj):
         return format_html('<img src="{}" height={height} />'.format(obj.image.url, height=200))
@@ -16,7 +16,7 @@ class ImageAdmin(admin.ModelAdmin):
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     extra = 2
-    readonly_fields = ["get_preview"]
+    readonly_fields = ['get_preview']
 
     def get_preview(self, obj):
         return format_html('<img src="{}" height={height} />'.format(obj.image.url, height=200))
