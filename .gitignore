@@ -1,4 +1,6 @@
-
+static/places
+media/
+json_file/
 .DS_store
 .gitattributes
 where_to_go/.env
