@@ -12,8 +12,14 @@ def places(request, place_id):
                   'imgs': [image.image.url for image in place.images.all()],
                   'description_short': place.short_description,
                   'description_long': place.long_description,
-                  'coordinates': {'lat': place.latitude, 'lng': place.longitude}}
-    response = JsonResponse(detailsUrl, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 4})
+                  'coordinates': {'lat': place.latitude,
+                                  'lng': place.longitude
+                                  }
+                  }
+    response = JsonResponse(detailsUrl,
+                            safe=False,
+                            json_dumps_params={'ensure_ascii': False,
+                                               'indent': 4})
     return response
 
 
@@ -35,8 +41,7 @@ def index(request):
                     "placeId": place.place_id,
                     "detailsUrl": reverse('place', args=[place.id])
                 }
-            })
-
+            }
+        )
     data = {'places_geojson': places_geojson}
     return render(request, "index.html", context=data)
-
