@@ -1,4 +1,7 @@
-static/places
+static/.editorconfig
+static/README.md
+static/SUMMARY.md
+places
 media/
 json_file/
 .DS_store
