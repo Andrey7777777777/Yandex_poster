@@ -27,13 +27,16 @@ def load_place(folder_name):
         return
     for file_name in file_names:
         with open(os.path.join(current_directory, file_name), 'r', encoding='utf-8') as file:
+
             place = json.load(file)
             obj, created = Places.objects.get_or_create(
                 title=place['title'],
-                short_description=place['description_short'],
-                long_description=place['description_long'],
-                latitude=place['coordinates']['lng'],
-                longitude=place['coordinates']['lat'],
+                defaults={
+                    'short_description': place['description_short'],
+                    'long_description': place['description_long'],
+                    'latitude': place['coordinates']['lng'],
+                    'longitude': place['coordinates']['lat']
+                }
             )
             for index, img_url in enumerate(place['imgs'], start=1):
                 img_name = os.path.basename(img_url)
