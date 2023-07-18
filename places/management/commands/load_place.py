@@ -27,8 +27,8 @@ def load_place(folder_name):
         return
     for file_name in file_names:
         with open(os.path.join(current_directory, file_name), 'r', encoding='utf-8') as file:
-
             place = json.load(file)
+            file.closed()
             obj, created = Places.objects.get_or_create(
                 title=place['title'],
                 defaults={

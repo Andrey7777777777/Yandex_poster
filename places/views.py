@@ -24,12 +24,10 @@ def get_json_place(request, place_id):
 
 
 def index(request):
-    places_geojson = {
-        "type": "FeatureCollection",
-        "features": []}
     places = Places.objects.all()
+    features = []
     for place in places:
-        places_geojson["features"].append(
+        features.append(
             {
                 "type": "Feature",
                 "geometry": {
@@ -42,5 +40,9 @@ def index(request):
                 }
             }
         )
+        print(place)
+    places_geojson = {
+        "type": "FeatureCollection",
+        "features": features}
     context = {'places_geojson': places_geojson}
     return render(request, "index.html", context=context)
