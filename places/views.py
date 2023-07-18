@@ -6,9 +6,9 @@ from places.models import Places
 from django.urls import reverse
 
 
-def places(request, place_id):
+def get_json_place(request, place_id):
     place = get_object_or_404(Places, pk=place_id)
-    detailsUrl = {"title": place.title,
+    details_url = {"title": place.title,
                   'imgs': [image.image.url for image in place.images.all()],
                   'description_short': place.short_description,
                   'description_long': place.long_description,
@@ -16,7 +16,7 @@ def places(request, place_id):
                                   'lng': place.longitude
                                   }
                   }
-    response = JsonResponse(detailsUrl,
+    response = JsonResponse(details_url,
                             safe=False,
                             json_dumps_params={'ensure_ascii': False,
                                                'indent': 4})
@@ -42,5 +42,5 @@ def index(request):
                 }
             }
         )
-    data = {'places_geojson': places_geojson}
-    return render(request, "index.html", context=data)
+    context = {'places_geojson': places_geojson}
+    return render(request, "index.html", context=context)

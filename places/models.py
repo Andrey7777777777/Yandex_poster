@@ -24,7 +24,7 @@ class Image(models.Model):
                               verbose_name='Место',
                               related_name='images'
                               )
-    image_number = models.PositiveIntegerField(validators=[
+    number = models.PositiveIntegerField(validators=[
         MinValueValidator(1)
     ])
 
@@ -33,10 +33,10 @@ class Image(models.Model):
     class Meta:
         verbose_name = 'IMAGE'
         verbose_name_plural = 'IMAGES'
-        ordering = ['image_number', 'place']
+        ordering = ['number', 'place']
         unique_together = ['id', 'place', 'image']
 
     def __str__(self):
-        return f'{self.image_number} {self.place.title}'
+        return f'{self.number} {self.place.title}'
 
 
