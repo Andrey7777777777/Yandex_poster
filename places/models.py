@@ -24,9 +24,10 @@ class Image(models.Model):
                               verbose_name='Место',
                               related_name='images'
                               )
-    number = models.PositiveIntegerField(validators=[
-        MinValueValidator(1)
-    ])
+    number = models.PositiveIntegerField(verbose_name='номер',
+                                         validators=[
+                                             MinValueValidator(1)
+                                         ])
 
     image = models.ImageField()
 
