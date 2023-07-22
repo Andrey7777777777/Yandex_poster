@@ -29,7 +29,7 @@ class Image(models.Model):
                                              MinValueValidator(1)
                                          ])
 
-    image = models.ImageField()
+    image = models.ImageField(verbose_name='ИЗОБРАЖЕНИЕ')
 
     class Meta:
         verbose_name = 'ИЗОБРАЖЕНИЕ'
