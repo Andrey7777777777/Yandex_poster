@@ -11,8 +11,8 @@ class Places(models.Model):
     longitude = models.FloatField('долгота')
 
     class Meta:
-        verbose_name = 'PLACE'
-        verbose_name_plural = 'PLACES'
+        verbose_name = 'место'
+        verbose_name_plural = 'места'
 
     def __str__(self):
         return self.title
@@ -29,11 +29,11 @@ class Image(models.Model):
                                              MinValueValidator(1)
                                          ])
 
-    image = models.ImageField(verbose_name='ИЗОБРАЖЕНИЕ')
+    image = models.ImageField(verbose_name='изображение')
 
     class Meta:
-        verbose_name = 'ИЗОБРАЖЕНИЕ'
-        verbose_name_plural = 'ИЗОБРАЖЕНИЕ'
+        verbose_name = 'изображение'
+        verbose_name_plural = 'изображение'
         ordering = ['number', 'place']
         unique_together = ['id', 'place', 'image']
 
